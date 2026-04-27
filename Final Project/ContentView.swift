@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = AnimalViewModel()
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Animal Facts!")
+            
+            let animalName: String = viewModel.name ?? "Error"
+            
+            Text(animalName)
+            
+            Button("Generate new Animal"){
+                viewModel.fetchAnimal()
+            }
         }
-        .padding()
+
     }
 }
 
