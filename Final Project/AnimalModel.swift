@@ -7,19 +7,17 @@
 import Foundation
 
 struct AnimalModel: Decodable {
-    let name: String
-    let scientificName: Taxonomy
-    let locations: [String]
-    let diet: Characteristic
-    let slogan: Characteristic
-    let lifespan: Characteristic
+    var name: String = "Test"
+    var scientificName: Taxonomy
+    var locations: [String] = ["Here", "There"]
+    var diet: Characteristic
+    var lifespan: Characteristic
     
 }
 struct Taxonomy: Decodable {
-    let scientificName: String
+    var scientificName: String = "Test Science name"
 }
 struct Characteristic: Decodable {
-    let diet: String
-    let slogan: String
-    let lifespan: String
+    var diet: String = "Hungry"
+    var lifespan: String = "1000000 Billion Years"
 }
