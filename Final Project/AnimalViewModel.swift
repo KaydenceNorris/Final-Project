@@ -6,44 +6,33 @@
 //
 import SwiftUI
 import Combine
-class AnimalViewModel: ObservableObject {
-   @Published var animal: AnimalModel?
-//    @Published var name: String = ""
-//    @Published var scientificName: String = ""
-//    @Published var locations: [String] = []
-//    @Published var diet: String = ""
-//    @Published var slogan: String = ""
-//    @Published var lifespan: String = ""
-
-    
-    func fetchAnimal() -> AnimalModel?{
-        guard let url = URL(string: "https://api.api-ninjas.com/v1/animals?name=python") else { return <#default value#> }
+class AnimalViewModel: ObservableObject , Identifiable{
+        @Published var animals: [AnimalModel] = []
         
-        var request = URLRequest(url: url)
-        request.setValue("Ki9fsfFGcnfBvTBOqTkJEDZV6biDZ1Br8rUusfLl", forHTTPHeaderField: "X-Api-Key")
+        init() {
+            fetchAnimals()
+        }
         
-        URLSession.shared.dataTask(with: request) {(data, response, error) in
-            guard let data = data else { return }
-            print(String(data: data, encoding: .utf8)!)
+        func fetchAnimals(name: String = "python") {
+            guard let url = URL(string: "https://api.api-ninjas.com/v1/animals?name=\(name)") else { return }
             
-            do {
-                let animalResponse = try JSONDecoder().decode(AnimalModel.self, from: data)
+            var request = URLRequest(url: url)
+            request.setValue("Ki9fsfFGcnfBvTBOqTkJEDZV6biDZ1Br8rUusfLl", forHTTPHeaderField: "X-Api-Key")
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data else { return }
+                print(String(data: data, encoding: .utf8)!)
                 
-                DispatchQueue.main.async {
-//                    self.name = animal.name
-//                    self.scientificName = animal.scientificName.scientificName
-//                    self.locations = animal.locations
-//                    self.diet = animal.diet.diet
-//                    self.slogan = animal.slogan.slogan
-//                    self.lifespan = animal.lifespan.lifespan
-                        self.animal = animalResponse
-                    
+                do {
+                    let animalResponse = try JSONDecoder().decode([AnimalModel].self, from: data)
+                    DispatchQueue.main.async {
+                        self.animals = animalResponse
+                        print(self.animals)
+                    }
+                } catch {
+                    print("Decoding failed: \(error)")
                 }
-            } catch{
-                print("Decoding failed")
-            }
-    
-        }.resume( )
-       return animal
+            }.resume()
+        }
     }
-}
+

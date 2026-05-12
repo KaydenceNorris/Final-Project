@@ -2,26 +2,30 @@
 //  AnimalIcon.swift
 //  Final Project
 //
-//  Created by NORRIS, KAYDENCE M. on 4/29/26.
+//  Created by Kaydence Norris on 4/27/26.
 //
-
 import SwiftUI
+
 struct AnimalIcon: View {
     let animal: AnimalModel
+    
     var body: some View {
-        ZStack(alignment: .bottom){
+        NavigationLink(destination: DetailView(animal: animal)) {
             Text(animal.name)
-                .padding(2)
-                .font(.caption)
+                .font(.headline)
+                .padding()
+                .frame(width: 160)
+                .background(Color.green)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
         }
-        .padding(3)
-        .frame(width: 100, height: 110)
-        .background(.brown)
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-
+        .buttonStyle(.plain)
     }
 }
 
 #Preview {
-    AnimalIcon()
+    AnimalIcon(animal: AnimalModel(
+        name: "Ball Python",
+        taxonomy: Taxonomy(scientificName: "Python regius"),
+        locations: ["Africa"],
+        characteristics: Characteristic(diet: "Carnivore", lifespan: "30 years")))
 }

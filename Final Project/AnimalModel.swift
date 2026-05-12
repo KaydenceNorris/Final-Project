@@ -1,23 +1,43 @@
-//
-//  AnimalModel.swift
-//  Final Project
-//
-//  Created by NORRIS, KAYDENCE M. on 4/27/26.
-//
 import Foundation
 
-struct AnimalModel: Decodable {
-    var name: String = "Test"
-    var scientificName: Taxonomy
-    var locations: [String] = ["Here", "There"]
-    var diet: Characteristic
-    var lifespan: Characteristic
-    
+struct AnimalModel: Decodable, Identifiable {
+    var id = UUID()
+    var name: String
+    var taxonomy: Taxonomy
+    var locations: [String]
+    var characteristics: Characteristic
+
+    enum CodingKeys: String, CodingKey {
+        case name, taxonomy, locations, characteristics
+    }
+
+    init(name: String, taxonomy: Taxonomy, locations: [String], characteristics: Characteristic) {
+        self.id = UUID()
+        self.name = name
+        self.taxonomy = taxonomy
+        self.locations = locations
+        self.characteristics = characteristics
+    }
 }
+
 struct Taxonomy: Decodable {
-    var scientificName: String = "Test Science name"
+    var scientificName: String
+
+    enum CodingKeys: String, CodingKey {
+        case scientificName = "scientific_name"
+    }
+
+    init(scientificName: String) {
+        self.scientificName = scientificName
+    }
 }
+
 struct Characteristic: Decodable {
-    var diet: String = "Hungry"
-    var lifespan: String = "1000000 Billion Years"
+    var diet: String
+    var lifespan: String
+
+    init(diet: String, lifespan: String) {
+        self.diet = diet
+        self.lifespan = lifespan
+    }
 }
