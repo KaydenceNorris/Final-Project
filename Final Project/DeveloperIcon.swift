@@ -20,6 +20,7 @@ struct DeveloperIcon: View {
             Text("How many bugs?")
                 .underline()
             Text(dev.bugs)
+            
         }
         .background(Color.yellow)
         .padding(10)

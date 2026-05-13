@@ -10,18 +10,27 @@ import SwiftUI
 // I am using Jacobs mac to do this if the commits look weird
 struct ContentView: View {
     @StateObject private var viewModel = AnimalViewModel()
+    @State private var searchText: String = "PYTHON"// deer works as an animal
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-                    ForEach(viewModel.animals) { animal in
-                        AnimalIcon(animal: animal)
-                    }
+        VStack{
+            NavigationStack {
+                TextField("Search animals...", text: $searchText)
+                    .textFieldStyle(.roundedBorder)
+                Button("Search") {
+                    viewModel.fetchAnimals(name: searchText)
                 }
-                .padding()
+                .buttonStyle(.borderedProminent)
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+                        ForEach(viewModel.animals) { animal in
+                            AnimalIcon(animal: animal)
+                        }
+                    }
+                    .padding()
+                }
+                .navigationTitle("Animals")
             }
-            .navigationTitle("Animals")
         }
     }
 }

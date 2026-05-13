@@ -18,6 +18,10 @@ struct Views: View {
                 .tabItem {
                     Label("Developer", systemImage: "person.crop.circle")
                 }
+            ApiView()
+                .tabItem {
+                    Label("API", systemImage: "network")
+                }
         }
     }
 }

@@ -13,6 +13,7 @@ struct DeveloperView: View {
             ForEach(Dev.allCases, id: \.self) { dev in
                 DeveloperIcon(dev: dev)
             }
+        Image("Image")
         }
         .padding()
     }
