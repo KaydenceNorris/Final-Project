@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ApiView: View {
+struct ApiView: View { // info about the API. Not much to see here i'm sorry i didn't make it all pretty
     var body: some View {
         VStack {
             Text("Api name: Animals API")

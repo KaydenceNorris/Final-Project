@@ -7,11 +7,12 @@
 import SwiftUI
 
 struct AnimalIcon: View {
-    let animal: AnimalModel
+    let animal: AnimalModel // the animal passed in
     
     var body: some View {
-        NavigationLink(destination: DetailView(animal: animal)) {
-            Text(animal.name)
+        NavigationLink(destination: DetailView(animal: animal))
+        {// when the button is clicked, it goes to the detail page
+            Text(animal.name)// just shows the name.  Everything else is on the deatilVieewpage
                 .font(.headline)
                 .padding()
                 .frame(width: 160)
@@ -23,7 +24,7 @@ struct AnimalIcon: View {
 }
 
 #Preview {
-    AnimalIcon(animal: AnimalModel(
+    AnimalIcon(animal: AnimalModel( // quickly constructed test animal
         name: "Ball Python",
         taxonomy: Taxonomy(scientificName: "Python regius"),
         locations: ["Africa"],

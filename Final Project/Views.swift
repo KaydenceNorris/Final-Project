@@ -8,17 +8,18 @@ import SwiftUI
 
 struct Views: View {
     var body: some View {
-        TabView {
-            ContentView()
+        TabView { // tab page to show different tabs of the app
+            ContentView()// the main page
                 .tabItem {
+                    // Look at thoose sytem images
                     Label("Main", systemImage: "house")
                 }
             
-            DeveloperView()
+            DeveloperView()// developer page
                 .tabItem {
                     Label("Developer", systemImage: "person.crop.circle")
                 }
-            ApiView()
+            ApiView()// api page
                 .tabItem {
                     Label("API", systemImage: "network")
                 }

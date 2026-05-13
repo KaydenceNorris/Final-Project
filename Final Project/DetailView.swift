@@ -10,7 +10,7 @@ import SwiftUI
 struct DetailView: View {
     let animal: AnimalModel
     var body: some View {
-        Text(animal.name)
+        Text(animal.name)// shows a page with other info about the animal. Once again graphic design is not my passion
             .background(Color.yellow)
             .underline(true)
             .bold()
@@ -23,14 +23,14 @@ struct DetailView: View {
         Divider()
         
         ForEach(animal.locations, id: \.self) { location in
-            Text(location)
+            Text(location)// shows the different locatons if an animal has one
                 .font(.default)
         }
     }
 }
 
 #Preview {
-        DetailView(animal: AnimalModel(
+        DetailView(animal: AnimalModel( // animal made to pass in
             name: "Ball Python",
             taxonomy: Taxonomy(scientificName: "Python regius"),
             locations: ["Africa"],

@@ -5,7 +5,7 @@
 //  Created by Jacob Angel on 5/12/26.
 //
 
-enum Dev: CaseIterable, Hashable{
+enum Dev: CaseIterable, Hashable{// Its an enum
     case kaydence
     case claude
     case jacob
@@ -13,7 +13,7 @@ enum Dev: CaseIterable, Hashable{
     var name: String{
         switch self{
         case .kaydence:
-            return "Kaydence"
+            return "Kaydence"// look at theese computed values!
         case .claude:
             return "Claude"
         case .jacob:

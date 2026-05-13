@@ -8,7 +8,7 @@ import SwiftUI
 struct DeveloperIcon: View {
     let dev: Dev
     var body: some View {
-        VStack{
+        VStack{ // Shows info about the "dev team" on this project
             Text(dev.name)
                 .padding(10)
                 .bold()
